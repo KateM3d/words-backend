@@ -4,9 +4,9 @@ const mongoose = require("mongoose");
 const routes = require("./Routes");
 const cors = require("cors");
 
-// const swaggerJsdoc = require("swagger-jsdoc");
-// const swaggerUi = require("swagger-ui-express");
-// const YAML = require("yamljs");
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
 
 require("dotenv").config();
 mongoose.set("strictQuery", false);
@@ -25,17 +25,17 @@ mongoose
 
 app.use(routes);
 
-// // Swagger setup
-// const swaggerDefinition = YAML.load("./swagger.yaml");
-//
-// const options = {
-//     swaggerDefinition,
-//     apis: ["./Routes.js"],
-// };
-//
-// const specs = swaggerJsdoc(options);
-//
-// app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+// Swagger setup
+const swaggerDefinition = YAML.load("./swagger.yaml");
+
+const options = {
+    swaggerDefinition,
+    apis: ["./Routes.js"],
+};
+
+const specs = swaggerJsdoc(options);
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

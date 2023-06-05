@@ -1,0 +1,158 @@
+swagger: "2.0"
+info:
+  title: Flashcard API Documentation
+  version: 1.0.0
+  description: API documentation for the Flashcard application
+
+paths:
+  /words:
+    get:
+      summary: Get all flashcards
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Flashcard"
+    post:
+      summary: Create a flashcard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlashcardCreate"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Flashcard"
+
+  /createFlashcard:
+    post:
+      summary: Create a flashcard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlashcardCreate"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Flashcard"
+
+  /editFlashcard:
+    put:
+      summary: Edit a flashcard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlashcardEdit"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /deleteFlashcard:
+    delete:
+      summary: Delete a flashcard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FlashcardDelete"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: string
+
+components:
+  schemas:
+    Flashcard:
+      type: object
+      properties:
+        _id:
+          type: string
+        french:
+          type: string
+        transcription:
+          type: string
+        english:
+          type: string
+        category:
+          type: string
+      example:
+        _id: 647d39f19f823886ab0318d5
+        french: vert
+        transcription: "[ vɛʀ ]"
+        english: green
+        category: colors
+
+    FlashcardCreate:
+      type: object
+      properties:
+        french:
+          type: string
+          required: true
+        transcription:
+          type: string
+          required: true
+        english:
+          type: string
+          required: true
+        category:
+          type: string
+          required: true
+      example:
+        french: vert
+        transcription: "[ vɛʀ ]"
+        english: green
+        category: colors
+
+    FlashcardEdit:
+      type: object
+      properties:
+        _id:
+          type: string
+          required: true
+        french:
+          type: string
+        transcription:
+          type: string
+        english:
+          type: string
+        category:
+          type: string
+      example:
+        _id: 647d39f19f823886ab0318d5
+        french: vert
+        transcription: "[ vɛʀ ]"
+        english: green
+        category: colors
+
+    FlashcardDelete:
+      type: object
+      properties:
+        _id:
+        type: string
+        required: true
+      example:
+        _id: 647ddaea5b51814fedb5f305
