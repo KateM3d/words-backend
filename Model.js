@@ -8,6 +8,4 @@ const flashcardSchema = new mongoose.Schema({
     category: String,
 });
 
-const Flashcard = mongoose.model("Flashcard", flashcardSchema);
-
-module.exports = Flashcard;
+module.exports = mongoose.model("Flashcard", flashcardSchema);
