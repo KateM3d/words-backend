@@ -1,4 +1,4 @@
-const Flashcard = require("./model");
+const Flashcard = require("./Model");
 
 // Get all flashcards
 const getAllFlashcards = async(req, res) => {
